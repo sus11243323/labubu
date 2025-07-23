@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ ELITE DIGITAL VAULT ✨</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #7b2cbf;
+            --secondary: #5a189a;
+            --accent: #e0aaff;
+            --dark: #10002b;
+            --light: #f8f9fa;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text: white;
+            --bg-gradient: linear-gradient(135deg, #10002b, #240046, #3c096c);
+            --neon-glow: 0 0 10px rgba(224, 170, 255, 0.8);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        body {
+            font-family: 'Rajdhani', 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            color: var(--text);
+            padding: 2rem;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            perspective: 1000px;
+        }
+
+        /* CYBERPUNK HEADER */
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            animation: glitch 2s infinite alternate;
+        }
+
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -2px;
+            font-weight: 900;
+            text-shadow: var(--neon-glow);
+            position: relative;
+        }
+
+        h1::after {
+            content: 'ACCESS GRANTED';
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: linear-gradient(90deg, #ff00ff, #00ffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            z-index: -1;
+            filter: blur(10px);
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* MATRIX GRID EFFECT */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        /* NEXT-GEN FILE CARDS */
+        .files-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 5rem;
+        }
+
+        .file-card {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 
+                        inset 0 0 20px rgba(224, 170, 255, 0.2);
+            border: 1px solid rgba(224, 170, 255, 0.3);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .file-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
+            background-size: 200% 200%;
+            animation: gradientFlow 3s ease infinite;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .file-card:hover {
+            transform: translateY(-15px) rotateX(10deg) scale(1.03);
+            box-shadow: 0 35px 60px rgba(0, 0, 0, 0.6), 
+                       inset 0 0 30px rgba(224, 170, 255, 0.4);
+            border-color: rgba(224, 170, 255, 0.6);
+        }
+
+        /* HOLOGRAPHIC FILE ICONS */
+        .file-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .file-icon {
+            font-size: 3.5rem;
+            margin-right: 2rem;
+            flex-shrink: 0;
+            background: rgba(123, 44, 191, 0.3);
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(224, 170, 255, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .file-icon::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0) 30%,
+                rgba(255, 255, 255, 0.3) 45%,
+                rgba(255, 255, 255, 0) 60%
+            );
+            transform: rotate(30deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+
+        .file-info {
+            flex: 1;
+        }
+
+        .file-name {
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            word-break: break-word;
+            background: linear-gradient(90deg, #e0aaff, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .file-size {
+            color: var(--accent);
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-shadow: 0 0 5px rgba(224, 170, 255, 0.5);
+        }
+
+        .file-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            margin: 2rem 0;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* QUANTUM DOWNLOAD BUTTON */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem 3rem;
+            border-radius: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 1.2rem;
+            margin-top: auto;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            color: black;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #ff00ff, #00ffff);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.8);
+            color: white;
+        }
+
+        .btn:hover::before {
+            opacity: 1;
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .btn-icon {
+            margin-left: 15px;
+            transition: all 0.4s;
+            font-size: 1.5rem;
+        }
+
+        .btn:hover .btn-icon {
+            transform: translateX(5px) rotate(360deg);
+        }
+
+        /* PULSING DOWNLOAD COUNTER */
+        .download-counter {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            font-weight: 500;
+            text-shadow: 0 0 5px rgba(224, 170, 255, 0.5);
+            display: flex;
+            align-items: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1200px) {
+            h1 {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .files-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .file-card {
+                padding: 2rem;
+            }
+            
+            .file-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 2.5rem;
+            }
+            
+            .file-name {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* SCANLINE EFFECT */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0) 0%,
+                rgba(0, 0, 0, 0) 50%,
+                rgba(0, 255, 255, 0.03) 51%,
+                rgba(0, 0, 0, 0) 52%,
+                rgba(0, 0, 0, 0) 100%
+            );
+            background-size: 100% 5px;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0.3;
+            animation: scanline 8s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 100%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- MATRIX BACKGROUND -->
+    <canvas id="matrix" class="matrix-bg"></canvas>
+    
+    <!-- SCANLINE EFFECT -->
+    <div class="scanlines"></div>
+    
+    <div class="container">
+        <header>
+            <h1>ELITE DIGITAL VAULT</h1>
+            <p class="subtitle">Restricted Access • Top Secret Files • Authorized Personnel Only</p>
+        </header>
+        
+        <div class="files-grid" id="filesContainer">
+            <!-- File cards will be generated here -->
+        </div>
+    </div>
+
+    <script>
+        // Configuration (ORIGINAL FILE NAMES PRESERVED)
+        const config = {
+            files: [
+                { 
+                    name: "HelpKitToolNeededStuff.zip", 
+                    size: "215 MB", 
+                    icon: "🔴🟩🔴", 
+                    description: "Special Hacking tool [simulation]. Contains advanced penetration testing utilities and network analysis modules.",
+                    downloadCount: 0
+                },
+                { 
+                    name: "SpecialFiles.rar", 
+                    size: "178 MB", 
+                    icon: "💻", 
+                    description: "Classified documents. Contents unknown. Security clearance level 5 required.",
+                    downloadCount: 0
+                },
+                { 
+                    name: "SpecialWebsite.html", 
+                    size: "342 MB", 
+                    icon: "🔑", 
+                    description: "Encrypted web portal. Requires decryption key for full access.",
+                    downloadCount: 0
+                }
+            ]
+        };
+
+        // Initialize
+        function init() {
+            renderFiles();
+            setupMatrixEffect();
+        }
+
+        // Render files with cyberpunk flair
+        function renderFiles() {
+            const container = document.getElementById("filesContainer");
+            container.innerHTML = "";
+            
+            config.files.forEach(file => {
+                const card = createFileCard(file);
+                container.appendChild(card);
+            });
+        }
+
+        // Create next-gen file card
+        function createFileCard(file) {
+            const card = document.createElement("div");
+            card.className = "file-card";
+            
+            card.innerHTML = `
+                <div class="file-header">
+                    <div class="file-icon">${file.icon}</div>
+                    <div class="file-info">
+                        <div class="file-name">${file.name}</div>
+                        <div class="file-size">${file.size}</div>
+                    </div>
+                </div>
+                
+                <div class="file-description">${file.description}</div>
+                <div class="download-counter">📊 ${file.downloadCount.toLocaleString()} SECURE DOWNLOADS</div>
+                
+                <button class="btn" data-filename="${file.name}">
+                    INITIATE DOWNLOAD
+                    <span class="btn-icon">↓</span>
+                </button>
+            `;
+            
+            return card;
+        }
+
+        // Track downloads (no double-counting)
+        function hasDownloadedBefore(filename) {
+            return localStorage.getItem(`downloaded_${filename}`) === 'true';
+        }
+
+        function markAsDownloaded(filename) {
+            localStorage.setItem(`downloaded_${filename}`, 'true');
+        }
+
+        // Update download counter
+        function logDownload(filename) {
+            if (hasDownloadedBefore(filename)) return false;
+            
+            markAsDownloaded(filename);
+            
+            const file = config.files.find(f => f.name === filename);
+            if (file) {
+                file.downloadCount++;
+                updateDownloadCounter(filename, file.downloadCount);
+                return true;
+            }
+            return false;
+        }
+
+        // Animate counter update
+        function updateDownloadCounter(filename, count) {
+            const card = document.querySelector(`[data-filename="${filename}"]`)?.closest('.file-card');
+            if (!card) return;
+            
+            const counter = card.querySelector('.download-counter');
+            if (counter) {
+                counter.textContent = `📊 ${count.toLocaleString()} SECURE DOWNLOADS`;
+                
+                // Add animation
+                counter.style.animation = 'none';
+                void counter.offsetWidth; // Trigger reflow
+                counter.style.animation = 'pulse 0.5s 2';
+            }
+        }
+
+        // Cyber download effect
+        function downloadFile(filename) {
+            const wasFirstDownload = logDownload(filename);
+            
+            // Create cyber download effect
+            const btn = document.querySelector(`[data-filename="${filename}"]`);
+            if (btn) {
+                btn.innerHTML = wasFirstDownload 
+                    ? '✅ DOWNLOAD VERIFIED' 
+                    : '🔄 DOWNLOAD RESTORED';
+                btn.style.background = wasFirstDownload 
+                    ? 'linear-gradient(90deg, #00ff00, #00cc00)' 
+                    : 'linear-gradient(90deg, #ffff00, #ffcc00)';
+                
+                // Add particle effect
+                createParticles(btn);
+                
+                setTimeout(() => {
+                    btn.innerHTML = 'INITIATE DOWNLOAD <span class="btn-icon">↓</span>';
+                    btn.style.background = 'linear-gradient(90deg, #ff00ff, #00ffff)';
+                }, 2000);
+            }
+            
+            // Simulate actual download
+            setTimeout(() => {
+                const link = document.createElement("a");
+                link.href = "#";
+                link.download = filename;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }, 500);
+        }
+
+        // Create cyber particles
+        function createParticles(element) {
+            const rect = element.getBoundingClientRect();
+            const particles = 20;
+            
+            for (let i = 0; i < particles; i++) {
+                const particle = document.createElement("div");
+                particle.style.position = "fixed";
+                particle.style.width = "4px";
+                particle.style.height = "4px";
+                particle.style.backgroundColor = getRandomColor();
+                particle.style.borderRadius = "50%";
+                particle.style.pointerEvents = "none";
+                particle.style.left = `${rect.left + rect.width/2}px`;
+                particle.style.top = `${rect.top + rect.height/2}px`;
+                particle.style.zIndex = "1000";
+                particle.style.transform = "translate(-50%, -50%)";
+                
+                document.body.appendChild(particle);
+                
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = 2 + Math.random() * 3;
+                const lifetime = 500 + Math.random() * 500;
+                
+                const x = Math.cos(angle) * velocity;
+                const y = Math.sin(angle) * velocity;
+                
+                let posX = rect.left + rect.width/2;
+                let posY = rect.top + rect.height/2;
+                let opacity = 1;
+                
+                const animate = () => {
+                    posX += x;
+                    posY += y;
+                    opacity -= 0.02;
+                    
+                    particle.style.left = `${posX}px`;
+                    particle.style.top = `${posY}px`;
+                    particle.style.opacity = opacity;
+                    
+                    if (opacity > 0) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        particle.remove();
+                    }
+                };
+                
+                requestAnimationFrame(animate);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, lifetime);
+            }
+        }
+
+        function getRandomColor() {
+            const colors = ['#ff00ff', '#00ffff', '#ffff00', '#ff9900', '#00ff00'];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        // MATRIX BACKGROUND EFFECT
+        function setupMatrixEffect() {
+            const canvas = document.getElementById('matrix');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+            const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const nums = '0123456789';
+            
+            const alphabet = katakana + latin + nums;
+            
+            const fontSize = 16;
+            const columns = canvas.width / fontSize;
+            
+            const rainDrops = [];
+            
+            for (let x = 0; x < columns; x++) {
+                rainDrops[x] = 1;
+            }
+            
+            const draw = () => {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                ctx.fillStyle = '#0F0';
+                ctx.font = fontSize + 'px monospace';
+                
+                for (let i = 0; i < rainDrops.length; i++) {
+                    const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                    ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+                    
+                    if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        rainDrops[i] = 0;
+                    }
+                    rainDrops[i]++;
+                }
+            };
+            
+            setInterval(draw, 30);
+            
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        }
+
+        // Handle clicks
+        document.addEventListener("click", (e) => {
+            if (e.target.classList.contains("btn")) {
+                const filename = e.target.getAttribute("data-filename");
+                downloadFile(filename);
+            }
+        });
+
+        // Start the cyber experience
+        init();
+
+        // Console access
+        window.accessVault = function() {
+            console.log('%c> VAULT TERMINAL ACTIVATED', 'color: #0F0; font-size: 18px;');
+            console.table(config.files.map(file => ({
+                'FILE': file.name,
+                'SIZE': file.size,
+                'DOWNLOADS': file.downloadCount,
+                'STATUS': hasDownloadedBefore(file.name) ? 'ACCESSED' : 'PENDING'
+            })));
+        };
+    </script>
+</body>
+</html>
