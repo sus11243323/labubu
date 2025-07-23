@@ -3,430 +3,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✨ ELITE DIGITAL VAULT ✨</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>🖥️ DYNAMIC VAULT</title>
     <style>
-        :root {
-            --primary: #7b2cbf;
-            --secondary: #5a189a;
-            --accent: #e0aaff;
-            --dark: #10002b;
-            --light: #f8f9fa;
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --text: white;
-            --bg-gradient: linear-gradient(135deg, #10002b, #240046, #3c096c);
-            --neon-glow: 0 0 10px rgba(224, 170, 255, 0.8);
-            --error: #ff3860;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
+        /* 🎮 RETRO STYLING */
         body {
-            font-family: 'Rajdhani', 'Inter', sans-serif;
-            background: var(--bg-gradient);
-            min-height: 100vh;
-            color: var(--text);
-            padding: 2rem;
-            line-height: 1.6;
-            overflow-x: hidden;
+            font-family: 'Courier New', monospace;
+            background: #0d0208;
+            color: #00ff41;
+            margin: 0;
+            padding: 20px;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><rect width="16" height="16" fill="%2300ff41"/></svg>'), auto;
         }
-
+        
         .container {
-            max-width: 1400px;
+            max-width: 800px;
             margin: 0 auto;
-            perspective: 1000px;
+            border: 1px dashed #00ff41;
+            padding: 20px;
         }
-
-        /* HEADER */
-        header {
-            text-align: center;
-            margin-bottom: 4rem;
-            position: relative;
-            animation: glitch 2s infinite alternate;
-        }
-
-        @keyframes glitch {
-            0%, 100% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-        }
-
+        
         h1 {
-            font-size: 4.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: -2px;
-            font-weight: 900;
-            text-shadow: var(--neon-glow);
+            text-align: center;
+            text-shadow: 0 0 5px #00ff41;
         }
-
-        .subtitle {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1.5rem;
-            max-width: 700px;
-            margin: 0 auto;
-            font-weight: 300;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-
-        /* FILE CARDS */
+        
         .files-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 3rem;
-            margin-top: 5rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
         }
-
+        
         .file-card {
+            border: 1px solid #00ff41;
+            padding: 15px;
             background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            padding: 3rem;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 
-                        inset 0 0 20px rgba(224, 170, 255, 0.2);
-            border: 1px solid rgba(224, 170, 255, 0.3);
-            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
-            transform-style: preserve-3d;
+            transition: all 0.3s;
         }
-
-        .file-card::before {
-            content: '';
-            position: absolute;
+        
+        .file-card:hover {
+            box-shadow: 0 0 10px #00ff41;
+        }
+        
+        .file-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .btn {
+            background: transparent;
+            border: 1px solid #00ff41;
+            color: #00ff41;
+            padding: 8px;
+            width: 100%;
+            margin-top: 10px;
+            font-family: 'Courier New', monospace;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: rgba(0, 255, 65, 0.1);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        /* CRT EFFECTS */
+        .crt::before {
+            content: "";
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
-            background-size: 200% 200%;
-            animation: gradientFlow 3s ease infinite;
-        }
-
-        .file-card.error::before {
-            background: var(--error);
-            animation: none;
-        }
-
-        @keyframes gradientFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .file-card:hover {
-            transform: translateY(-15px) rotateX(10deg) scale(1.03);
-            box-shadow: 0 35px 60px rgba(0, 0, 0, 0.6), 
-                       inset 0 0 30px rgba(224, 170, 255, 0.4);
-            border-color: rgba(224, 170, 255, 0.6);
-        }
-
-        /* FILE CONTENT */
-        .file-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .file-icon {
-            font-size: 3.5rem;
-            margin-right: 2rem;
-            flex-shrink: 0;
-            background: rgba(123, 44, 191, 0.3);
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 20px rgba(224, 170, 255, 0.5);
-        }
-
-        .file-info {
-            flex: 1;
-        }
-
-        .file-name {
-            font-weight: 700;
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-            word-break: break-word;
-            background: linear-gradient(90deg, #e0aaff, #ffffff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .file-size {
-            color: var(--accent);
-            font-size: 1.1rem;
-            font-weight: 500;
-            text-shadow: 0 0 5px rgba(224, 170, 255, 0.5);
-        }
-
-        .file-description {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1.1rem;
-            margin: 2rem 0;
-            line-height: 1.8;
-            font-weight: 300;
-        }
-
-        /* BUTTONS */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem 3rem;
-            border-radius: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.4s;
-            border: none;
-            outline: none;
-            width: 100%;
-            font-size: 1.2rem;
-            margin-top: auto;
-            position: relative;
-            overflow: hidden;
-            color: black;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            background: linear-gradient(90deg, #ff00ff, #00ffff);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 30px rgba(255, 0, 255, 0.8);
-        }
-
-        .btn:disabled {
-            background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.5);
-            cursor: not-allowed;
-            box-shadow: none;
-        }
-
-        .btn.error {
-            background: var(--error);
-            box-shadow: 0 0 15px rgba(255, 56, 96, 0.5);
-        }
-
-        .btn-icon {
-            margin-left: 15px;
-            transition: all 0.4s;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            .file-card {
-                padding: 2rem;
-            }
-            
-            .file-icon {
-                width: 70px;
-                height: 70px;
-                font-size: 2.5rem;
-            }
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 255, 65, 0.05),
+                rgba(0, 255, 65, 0.05) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 9999;
         }
     </style>
 </head>
-<body>
+<body class="crt">
     <div class="container">
-        <header>
-            <h1>ELITE DIGITAL VAULT</h1>
-            <p class="subtitle">Restricted Access • Top Secret Files • Authorized Personnel Only</p>
-        </header>
-        
+        <h1>DYNAMIC FILE VAULT</h1>
         <div class="files-grid" id="filesContainer">
-            <!-- Loading -->
-            <div class="file-card skeleton">
-                <div class="file-header">
-                    <div class="file-icon"></div>
-                    <div class="file-info">
-                        <div class="file-name"></div>
-                        <div class="file-size"></div>
-                    </div>
-                </div>
-                <div class="file-description"></div>
-                <button class="btn" disabled></button>
-            </div>
+            <!-- Cards will appear here automatically -->
+            <div class="loading">Scanning for files...</div>
         </div>
     </div>
 
     <script>
-        // Configuration (ORIGINAL FILES)
+        // Configuration
         const config = {
-            files: [
-                { 
-                    name: "HelpKitToolNeededStuff.zip", 
-                    size: "215 MB", 
-                    icon: "🟩", 
-                    description: "Special Hacking tool [simulation]. Contains advanced penetration testing utilities.",
-                    downloadCount: 0
-                },
-                { 
-                    name: "SpecialFiles.rar", 
-                    size: "178 MB", 
-                    icon: "💻", 
-                    description: "Classified documents. Contents unknown. Security clearance required.",
-                    downloadCount: 0
-                },
-                { 
-                    name: "SpecialWebsite.html", 
-                    size: "342 MB", 
-                    icon: "🔑", 
-                    description: "Encrypted web portal. Requires decryption key for access.",
-                    downloadCount: 0
-                }
-            ]
+            scanInterval: 3000, // Check every 3 seconds
+            knownFiles: {} // Tracks existing files
         };
 
         // Initialize
-        async function init() {
-            await renderFiles();
+        function init() {
+            scanFiles();
+            setInterval(scanFiles, config.scanInterval);
         }
 
-        // Render files with availability check
-        async function renderFiles() {
-            const container = document.getElementById("filesContainer");
-            container.innerHTML = "";
-            
-            for (const file of config.files) {
-                const exists = await checkFileExists(file.name);
-                const card = createFileCard(file, exists);
-                container.appendChild(card);
+        // Scan for files
+        async function scanFiles() {
+            try {
+                // Get all files in directory (simulated)
+                const files = await getAvailableFiles();
+                
+                // Add new files
+                files.forEach(file => {
+                    if (!config.knownFiles[file.name]) {
+                        addFileCard(file);
+                        config.knownFiles[file.name] = true;
+                    }
+                });
+                
+                // Remove deleted files
+                Object.keys(config.knownFiles).forEach(filename => {
+                    if (!files.some(f => f.name === filename)) {
+                        removeFileCard(filename);
+                        delete config.knownFiles[filename];
+                    }
+                });
+                
+            } catch (error) {
+                console.error("Scan error:", error);
             }
         }
 
-        // Create file card
-        function createFileCard(file, exists) {
-            const card = document.createElement("div");
-            card.className = `file-card ${exists ? '' : 'error'}`;
+        // Simulate getting available files
+        async function getAvailableFiles() {
+            // In a real app, this would fetch from server
+            return [
+                { name: "HelpKitToolNeededStuff.zip", size: "215 KB" },
+                { name: "SpecialFiles.rar", size: "178 KB" },
+                { name: "SpecialWebsite.html", size: "342 KB" }
+            ];
+        }
+
+        // Add file card
+        function addFileCard(file) {
+            const container = document.getElementById('filesContainer');
+            
+            // Remove loading message if present
+            const loading = container.querySelector('.loading');
+            if (loading) loading.remove();
+            
+            const card = document.createElement('div');
+            card.className = 'file-card';
+            card.dataset.filename = file.name;
             
             card.innerHTML = `
-                <div class="file-header">
-                    <div class="file-icon">${file.icon}</div>
-                    <div class="file-info">
-                        <div class="file-name">${file.name}</div>
-                        <div class="file-size">${file.size}</div>
-                    </div>
-                </div>
-                
-                <div class="file-description">${file.description}</div>
-                <div class="download-counter">📊 ${file.downloadCount.toLocaleString()} DOWNLOADS</div>
-                
-                <button class="btn ${exists ? '' : 'error'}" 
-                        data-filename="${file.name}" 
-                        ${exists ? '' : 'disabled'}>
-                    ${exists ? 'INITIATE DOWNLOAD' : 'NOT AVAILABLE'}
-                    <span class="btn-icon">${exists ? '↓' : '⛔'}</span>
+                <div class="file-name">${file.name}</div>
+                <div class="file-size">${file.size}</div>
+                <button class="btn" data-filename="${file.name}">
+                    DOWNLOAD
                 </button>
             `;
             
-            return card;
+            container.appendChild(card);
         }
 
-        // Check if file exists
-        async function checkFileExists(filename) {
-            try {
-                const response = await fetch(filename, { method: 'HEAD' });
-                return response.ok;
-            } catch (error) {
-                return false;
+        // Remove file card
+        function removeFileCard(filename) {
+            const card = document.querySelector(`[data-filename="${filename}"]`);
+            if (card) {
+                card.style.transform = 'scale(0.9)';
+                card.style.opacity = '0';
+                setTimeout(() => card.remove(), 300);
             }
-        }
-
-        // Create a real ZIP file (demo content)
-        function createZipFile(filename) {
-            const content = `This is simulated content for ${filename}\n\n` +
-                           `File generated by Elite Digital Vault\n` +
-                           `Timestamp: ${new Date().toISOString()}`;
-            
-            const blob = new Blob([content], { type: 'application/zip' });
-            return URL.createObjectURL(blob);
         }
 
         // Handle downloads
         function downloadFile(filename) {
-            // For demo purposes, we'll create a simulated file
-            const fileUrl = createZipFile(filename);
+            // Create a blob with sample content
+            const content = `This is a simulated download of ${filename}\n\n` +
+                          `File generated by Dynamic Vault\n` +
+                          `Timestamp: ${new Date().toLocaleString()}`;
             
-            const link = document.createElement("a");
-            link.href = fileUrl;
-            link.download = filename;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            const blob = new Blob([content], { type: 'application/octet-stream' });
+            const url = URL.createObjectURL(blob);
             
-            // Update UI
-            const btn = document.querySelector(`[data-filename="${filename}"]`);
-            if (btn) {
-                btn.innerHTML = '✅ DOWNLOAD COMPLETE';
-                btn.style.background = 'linear-gradient(90deg, #00ff00, #00cc00)';
-                
-                setTimeout(() => {
-                    btn.innerHTML = 'DOWNLOAD AGAIN <span class="btn-icon">↻</span>';
-                    btn.style.background = 'linear-gradient(90deg, #ff00ff, #00ffff)';
-                }, 2000);
-            }
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
             
-            // Update counter if first download
-            if (!hasDownloadedBefore(filename)) {
-                markAsDownloaded(filename);
-                const file = config.files.find(f => f.name === filename);
-                if (file) {
-                    file.downloadCount++;
-                    updateDownloadCounter(filename, file.downloadCount);
-                }
-            }
-        }
-
-        // Download tracking
-        function hasDownloadedBefore(filename) {
-            return localStorage.getItem(`downloaded_${filename}`) === 'true';
-        }
-
-        function markAsDownloaded(filename) {
-            localStorage.setItem(`downloaded_${filename}`, 'true');
-        }
-
-        function updateDownloadCounter(filename, count) {
-            const counter = document.querySelector(`[data-filename="${filename}"]`)
-                            ?.closest('.file-card')
-                            ?.querySelector('.download-counter');
-            if (counter) {
-                counter.textContent = `📊 ${count.toLocaleString()} DOWNLOADS`;
-            }
+            // Clean up
+            setTimeout(() => URL.revokeObjectURL(url), 100);
         }
 
         // Event listeners
-        document.addEventListener("click", (e) => {
-            if (e.target.classList.contains("btn") && !e.target.disabled) {
-                const filename = e.target.getAttribute("data-filename");
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('btn')) {
+                const filename = e.target.dataset.filename;
                 downloadFile(filename);
             }
         });
 
-        // Initialize
+        // Start the system
         init();
     </script>
 </body>
